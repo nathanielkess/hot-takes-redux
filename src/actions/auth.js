@@ -1,5 +1,7 @@
-import { auth, googleAuthProvider } from '../firebase';
-import { addUser } from './users';
+import { auth, database, googleAuthProvider } from '../firebase';
+import pick from 'lodash/pick';
+
+const userRef = database.ref('users');
 
 export const signIn = () => {
   return (dispatch) => {
@@ -36,7 +38,15 @@ export const startListeningToAuthChanges = () => {
     auth.onAuthStateChanged((user) => {
       if(user){
         dispatch(signedIn(user));
-        dispatch(addUser(user));
+        //add to user firebase, let some listener 
+        //fire an action to tell redux that a user is added to firebase
+        const userTransformed = pick(user, [
+          'displayName',
+          'photoURL',
+          'email',
+          'uid',
+          ]);
+        userRef.child(user.uid).set(userTransformed);
       }else{
         dispatch(signedOut());
       }

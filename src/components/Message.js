@@ -5,13 +5,10 @@ import './Message.css';
 const Message = ({ belongsToCurrentUser, content, id, user, deleteMessage }) => (
   <article className={classNames('Message', { 'current-user': belongsToCurrentUser })}>
     <div className="Message--avatar">
-      <img
-        role="presentation"
-        src={user.photoURL}
-      />
+     
     </div>
     <div className="Message--main">
-      <h4 className="Message--user">{ user.displayName }</h4>
+      
       <p className="Message--content">{ content }</p>
       <footer className="Message--controls">
         {
