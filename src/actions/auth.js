@@ -7,14 +7,14 @@ export const signIn = () => {
   return (dispatch) => {
     dispatch({type: 'ATTEMPTING_LOGIN'});
     auth.signInWithPopup(googleAuthProvider);
-  }
+  };
 };
 
 export const signOut = () => {
   return (dispatch) => {
     dispatch({type: 'ATTEMPTING_LOGIN'});
-    auth.signOut()
-  }
+    auth.signOut();
+  };
 };
 
 const signedIn = (user) => {
@@ -25,13 +25,13 @@ const signedIn = (user) => {
     photoURL: user.photoURL,
     uid: user.uid,
   };
-}
+};
 
 const signedOut = () =>{
   return {
     type: 'SIGN_OUT',
-  }
-}
+  };
+};
 
 export const startListeningToAuthChanges = () => {
   return (dispatch) => {
@@ -51,5 +51,5 @@ export const startListeningToAuthChanges = () => {
         dispatch(signedOut());
       }
     });
-  }
-}
+  };
+};
