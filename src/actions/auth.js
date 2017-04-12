@@ -36,6 +36,7 @@ const signedOut = () =>{
 export const startListeningToAuthChanges = () => {
   return (dispatch) => {
     auth.onAuthStateChanged((user) => {
+      console.log(user);
       if(user){
         dispatch(signedIn(user));
         //add to user firebase, let some listener 
